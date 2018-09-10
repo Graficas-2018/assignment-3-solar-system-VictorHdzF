@@ -121,7 +121,7 @@ function createScene(canvas)
     MA_orbit.rotation.set(45, 0, 0);
     sunGroup.add(MA_orbit);
 ///////////////////////////////////////////////////////     ASTEROID FIELD CREATION     ///////////////////////////////////////////////////////
-    for (var i = 1; i <= 365; i += 4)
+    /*for (var i = 1; i <= 365; i += 4)
     {
         var Asteroid = new THREE.Mesh((new THREE.DodecahedronGeometry(0.08)), new THREE.MeshPhongMaterial({ map: new THREE.TextureLoader().load("images/phobosbump.jpg")}));
         Asteroid.position.set((Math.cos((Math.PI/180) * i) * 24), 0, (Math.sin((Math.PI/180) * i) * 22.5));
@@ -144,11 +144,9 @@ function createScene(canvas)
         var Asteroid = new THREE.Mesh((new THREE.DodecahedronGeometry(0.09)), new THREE.MeshPhongMaterial({ map: new THREE.TextureLoader().load("images/phobosbump.jpg")}));
         Asteroid.position.set((Math.cos((Math.PI/180) * i) * 27), 0, (Math.sin((Math.PI/180) * i)) * 24);
         sunGroup.add(Asteroid);
-    }
+    }*/
 ///////////////////////////////////////////////////////     ASTEROID FIELD (.obj) CREATION     ///////////////////////////////////////////////////////
-    /*var loader = new THREE.OBJLoader();
-    for (var i = 1; i <= 365; i++)
-    {
+    var loader = new THREE.OBJLoader();
         // load a resource
         loader.load(
         // resource URL
@@ -156,17 +154,22 @@ function createScene(canvas)
 	    // called when resource is loaded
             function ( object ) 
             {
-                object.position.set((Math.cos((Math.PI/180) * i) * 25), 0, (Math.sin((Math.PI/180) * i) * 25));
-                object.scale.set(0.006, 0.006, 0.006);
                 object.material = new THREE.MeshPhongMaterial({ map: new THREE.TextureLoader().load("images/phobosbump.jpg")});
+                object.position.set((Math.cos((Math.PI/180) * 1) * 25), 0, (Math.sin((Math.PI/180) * 1) * 25));
+                object.scale.set(0.004, 0.004, 0.004);
                 sunGroup.add(object);
+                for (var i = 2; i <= 365; i++)
+                {
+                    Asteroid = object.clone();
+                    Asteroid.position.set((Math.cos((Math.PI/180) * i) * (Math.floor(Math.random() * (27 - 22 + 1)) + 22)), 0, (Math.sin((Math.PI/180) * i) * (Math.floor(Math.random() * (27 - 22 + 1)) + 22)));
+                    sunGroup.add(Asteroid);
+                }
             },
         // called when loading is in progresses
         function ( xhr ) { console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' ); },
         // called when loading has errors
         function ( error ) { console.log( 'An error happened' );}
         );
-    } */
 ///////////////////////////////////////////////////////     JUPITER CREATION     ///////////////////////////////////////////////////////
     Jupiter = new THREE.Mesh((new THREE.SphereGeometry(2.2, 20, 20)),(new THREE.MeshPhongMaterial({ map:new THREE.TextureLoader().load("images/jupitermap.jpg")})));
     Jupiter.position.set(30, 0, 0);
