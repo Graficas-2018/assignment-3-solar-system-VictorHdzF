@@ -23,7 +23,7 @@ function animate()
     sunGroup.rotation.y -= angle / 5;
     planetGroup.rotation.x += angle * 0.5;
 
-    Sun.rotation.y += angle * 0.05;
+    // Sun.rotation.y += angle * 0.05;
     Mercury.rotation.y += angle * 0.2;
     Venus.rotation.y += angle * 0.4;
     Earth.rotation.y += angle * 0.6;
